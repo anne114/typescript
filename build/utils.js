@@ -1,12 +1,12 @@
-const path = require("path");
-const fs = require("fs");
-const htmlWebpackPlugin = require("html-webpack-plugin");
-const entryFilePath = path.resolve(__dirname, "../src/entry");
+const path = require('path');
+const fs = require('fs');
+const htmlWebpackPlugin = require('html-webpack-plugin');
+const entryFilePath = path.resolve(__dirname, '../src/entry');
 const entryFilesName = getFileName(entryFilePath);
 
-function getFileName(dirPath) {
+function getFileName (dirPath) {
   let files = fs.readdirSync(dirPath);
-  console.log("fiels,,", files);
+  console.log('fiels,,', files);
   let fileNames = [];
   let length = files.length;
   for (let i = 0; i < length; i++) {
@@ -16,11 +16,11 @@ function getFileName(dirPath) {
       fileNames.push(path.basename(fileItem, path.extname(fileItem)));
     }
   }
-  console.log("fileNames::", fileNames);
+  console.log('fileNames::', fileNames);
   return fileNames;
 }
 
-function getHtmlTempContent(title) {
+function getHtmlTempContent (title) {
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -39,7 +39,7 @@ function getHtmlTempContent(title) {
 exports.getEntrys = () => {
   let entrys = {};
   entryFilesName.forEach(v => {
-    entrys[v] = path.resolve(entryFilePath, v + ".js");
+    entrys[v] = path.resolve(entryFilePath, v + '.ts');
   });
   return entrys;
 };

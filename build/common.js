@@ -8,15 +8,22 @@ module.exports = {
     path: path.resolve(__dirname, '../dist')
   },
   resolve: {
-    extensions: ['.js', '.vue', '.scss'],
+    extensions: ['.js', '.ts', '.vue', '.scss'],
     alias: {
       '@': path.resolve(__dirname, '../src'),
-      utilsJs: '@/common/js/utils.js',
-      config: '@/config/index.js'
+      utilsJs: '@/common/js/utils.ts',
+      config: '@/config/index.ts'
     }
   },
   module: {
     rules: [
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        }
+      },
       {
         test: /\.vue$/,
         loader: 'vue-loader'

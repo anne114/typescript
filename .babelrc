@@ -1,4 +1,13 @@
 {
   "presets": ["@babel/preset-env"],
-  "plugins": ["@babel/transform-runtime", "@babel/plugin-syntax-dynamic-import"]
+  "plugins": [
+    "@babel/transform-runtime",
+    "@babel/plugin-syntax-dynamic-import",
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ]
+  ]
 }
