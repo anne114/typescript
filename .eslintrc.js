@@ -1,45 +1,44 @@
 module.exports = {
-  root: true,
-  env: {
-    node: true,
-  },
-  extends: ['plugin:vue/essential', '@vue/prettier', '@vue/typescript'],
-  rules:
-    process.env.NODE_ENV === 'production'
-      ? {}
-      : {
-          // allow paren-less arrow functions 要求箭头函数的参数使用圆括号
-          'arrow-parens': 0,
-          // allow async-await 强制 generator 函数中 * 号周围使用一致的空格
-          'generator-star-spacing': 0,
-          // allow debugger during development
-          'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-          'no-console': process.env.NODE_ENV === 'production' ? 1 : 0,
-          'no-undef': 0,
-          // 'no-unused-vars': 1,
-          'no-empty': 1,
-          'prettier/prettier':
-            process.env.NODE_ENV === 'production'
-              ? 0
-              : [
-                  'error',
-                  {
-                    singleQuote: true,
-                    trailingComma: 'es5',
-                    bracketSpacing: true,
-                    jsxBracketSameLine: false,
-                  },
-                ],
-        },
+  plugins: ['vue', '@typescript-eslint'],
   parserOptions: {
     parser: '@typescript-eslint/parser',
+    ecmaVersion: 2017,
+    sourceType: 'module'
   },
-  overrides: [
-    {
-      files: ['**/__tests__/*.{j,t}s?(x)'],
-      env: {
-        jest: true,
-      },
-    },
+  root: true,
+  env: {
+    node: true
+  },
+  extends: [
+    'plugin:vue/base',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:vue/essential',
+    '@vue/standard',
+    '@vue/typescript'
   ],
+  rules: {
+    // eslint rules
+    'one-var': 0,
+    'arrow-parens': 0,
+    'generator-star-spacing': 0,
+    'no-debugger': 0,
+    'no-console': 0,
+    semi: [2, 'always'],
+    'no-extra-semi': 2,
+    'space-before-function-paren': 0,
+    eqeqeq: 0,
+    'spaced-comment': 0,
+    'no-useless-escape': 0,
+    'no-tabs': 0,
+    'no-mixed-spaces-and-tabs': 0,
+    'new-cap': 0,
+    camelcase: 0,
+    'no-new': 0,
+    indent: 'off',
+    // typescript-eslint rules
+    '@typescript-eslint/indent': ['error', 2],
+    '@typescript-eslint/explicit-function-return-type': 0,
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/class-name-casing': 'off'
+  }
 };

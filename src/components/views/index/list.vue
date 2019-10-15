@@ -21,19 +21,19 @@ import { State, Getter, Action, Mutation, namespace } from 'vuex-class';
 const modAState = namespace('modA', State);
 const modAMutation = namespace('modA', Mutation);
 @Component({
-  components: { listChild },
+  components: { listChild }
 })
 export default class List extends Vue {
-  @State storeTest;
-  @Getter storeTestGetter;
-  @Mutation('editStoreTest') editStoreTestFn;
-  @modAState modulesAstate;
-  @modAMutation('editModAState') editModAStateFn;
-  dd: String = 's';
+  @State storeTest: string | undefined;
+  @Getter storeTestGetter: string | undefined;
+  @Mutation('editStoreTest') editStoreTestFn: any;
+  @modAState modulesAstate: any;
+  @modAMutation('editModAState') editModAStateFn: any;
+  dd: string = 's';
   @Prop({ type: Object, default: {} })
   prosdata: indexProps | undefined;
   @Emit('onemit')
-  onEmit(item): number {
+  onEmit(item: any): number {
     this.dd += item;
     return item; // 返回的值会当做父组件该方法的参数
   }
@@ -46,18 +46,13 @@ export default class List extends Vue {
     setTimeout(() => {
       this.editModAStateFn('dddddd');
     }, 3000);
-
-    enum eBuffConfig {
-      profession = 'profession',
-      race = 'race',
+    enum Color {
+      blue,
+      grey,
+      green = 'green'
     }
-
-    // enum Color {
-    //   blue = 'blue',
-    //   green = 'green'
-    // }
-    // let c: Color = Color.blue;
-    // console.log('::::', c);
+    let c: Color = Color.grey;
+    console.log('cccccc', c);
   }
 }
 </script>
